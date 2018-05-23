@@ -105,6 +105,7 @@ class VisualDiffTester
         $filename = $this->getFilename();
 
         $browsershot = Browsershot::html($this->html);
+        $browsershot->noSandbox();
 
         if (! is_null(config('visualdiff.node_binary'))) {
             $browsershot->setNodeBinary(config('visualdiff.node_binary'));
