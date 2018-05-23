@@ -118,6 +118,16 @@ class VisualDiffTester
         $browsershot->windowSize($this->currentResolution['width'], $this->currentResolution['height'])
             ->save($this->screenshotOutputPath . DIRECTORY_SEPARATOR . $filename);
     }
+    /**
+     * Determines whether or not the screenshots should be updated instead of
+     * matched.
+     *
+     * @return bool
+     */
+    protected function shouldUpdateScreenshots(): bool
+    {
+        return in_array('--update-screenshots', $_SERVER['argv'], true);
+    }
 
     protected function createDiff()
     {
@@ -139,12 +149,6 @@ class VisualDiffTester
 
         $result = $diff->save($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename());
 
-        // Rename new image for next comparison
-        rename(
-            $this->screenshotOutputPath . DIRECTORY_SEPARATOR . $this->getNewFilename(),
-            $this->screenshotOutputPath . DIRECTORY_SEPARATOR . $this->getComparisonFilename()
-        );
-
         if (! is_null($result)) {
             try {
                 Assert::assertLessThanOrEqual(
@@ -154,11 +158,27 @@ class VisualDiffTester
                     "See: " . $this->diffOutputPath . $this->getDiffFilename()
                 );
             } catch (ExpectationFailedException $e) {
-                echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
+                if ($this->shouldUpdateScreenshots()) {
+                    $this->renameScreenshots();
+                    return;
+                } else {
+                    echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
 
-                throw $e;
+                    throw $e;
+                }
             }
         }
+
+        // Rename new image for next comparison
+        $this->renameScreenshots();
+    }
+
+    protected function renameScreenshots()
+    {
+        rename(
+            $this->screenshotOutputPath . DIRECTORY_SEPARATOR . $this->getNewFilename(),
+            $this->screenshotOutputPath . DIRECTORY_SEPARATOR . $this->getComparisonFilename()
+        );
     }
 
 }
