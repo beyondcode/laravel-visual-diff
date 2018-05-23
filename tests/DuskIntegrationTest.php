@@ -20,6 +20,7 @@ class DuskIntegrationTest extends TestCase
     protected function driver()
     {
         $options = (new ChromeOptions())->addArguments([
+            '--no-sandbox',
             '--disable-gpu',
             '--headless',
             '--window-size=1920, 1080',
