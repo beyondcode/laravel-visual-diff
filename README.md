@@ -114,6 +114,21 @@ $this->get('/')
 
 This will automatically create a screenshot in all provided resolutions and create a diff, if a previous screenshot is available.
 
+### Dealing with diffs
+
+When VisualDiff detects differences in the new screenshot compared to the previous successfully created screenshot, the PHPUnit test will fail.
+It will tell you which test caused the visual difference as well as giving you the filename of the screenshot diff.
+
+Now you need to handle with this visual diff, just as you would with a code-diff. Review the changes and either approve the visual difference, or revert the UI state back to the successful state.
+
+You can approve the new screenshots by adding a `-d --update-screenshots` flag to the phpunit command.
+
+```bash
+> ./vendor/bin/phpunit -d --update-screenshots
+
+OK (1 test, 1 assertion)
+``` 
+
 ### Specify multiple resolutions
 
 Creating diffs for multiple resolutions can be very useful - especially if you want to test responsive websites and applications.
