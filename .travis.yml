@@ -18,7 +18,7 @@ before_script:
   - travis_retry composer self-update
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  - Xvfb -ac :0 -screen 0 1920x1080x16 &
   - ./vendor/laravel/dusk/bin/chromedriver-linux &
 
 script:
