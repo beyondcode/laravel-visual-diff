@@ -149,7 +149,7 @@ class VisualDiffTester
                 config('visualdiff.maximum_error_percentage'),
                 $result->error_percentage,
                 "The visual diff for " . $this->name . " has a higher pixel diff than the allowed maximum." . PHP_EOL .
-                "See: " . $this->getDiffFilename()
+                "See: " . $this->diffOutputPath . $this->getDiffFilename()
             );
         } catch (ExpectationFailedException $e) {
             echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));

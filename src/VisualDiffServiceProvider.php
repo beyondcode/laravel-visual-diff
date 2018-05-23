@@ -46,6 +46,8 @@ class VisualDiffServiceProvider extends ServiceProvider
             $tester->setDiffOutputPath(config('visualdiff.diff_path'));
 
             $tester->createDiffs();
+
+            return $this;
         });
 
         TestResponse::macro('visualDiffForResolutions', function (array $resolutions, $name = null) {
@@ -54,7 +56,7 @@ class VisualDiffServiceProvider extends ServiceProvider
                 $name = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5)[4]['function'];
             }
 
-            $this->visualDiff($name, $resolutions);
+            return $this->visualDiff($name, $resolutions);
         });
 
         if (class_exists(Browser::class)) {
@@ -78,6 +80,8 @@ class VisualDiffServiceProvider extends ServiceProvider
                 $tester->setDiffOutputPath(config('visualdiff.diff_path'));
 
                 $tester->createDiffs();
+
+                return $this;
             });
 
             Browser::macro('visualDiffForResolutions', function (array $resolutions, $name = null) {
@@ -86,7 +90,7 @@ class VisualDiffServiceProvider extends ServiceProvider
                     $name = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 7)[6]['function'];
                 }
 
-                $this->visualDiff($name, $resolutions);
+                return $this->visualDiff($name, $resolutions);
             });
         }
     }

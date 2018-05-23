@@ -154,7 +154,7 @@ $this->get('/')
 
 If you use [iTerm2](https://www.iterm2.com/) as your terminal of choice, you will see an image representation of the diff when you run your tests.
 
---SCREENSHOT--
+![iTerm 2](https://beyondco.de/github/visualdiff.png)
 
 ### Changelog
 
