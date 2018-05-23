@@ -145,17 +145,19 @@ class VisualDiffTester
             $this->screenshotOutputPath . DIRECTORY_SEPARATOR . $this->getComparisonFilename()
         );
 
-        try {
-            Assert::assertLessThanOrEqual(
-                config('visualdiff.maximum_error_percentage'),
-                $result->error_percentage,
-                "The visual diff for " . $this->name . " has a higher pixel diff than the allowed maximum." . PHP_EOL .
-                "See: " . $this->diffOutputPath . $this->getDiffFilename()
-            );
-        } catch (ExpectationFailedException $e) {
-            echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
+        if (! is_null($result)) {
+            try {
+                Assert::assertLessThanOrEqual(
+                    config('visualdiff.maximum_error_percentage'),
+                    $result->error_percentage,
+                    "The visual diff for " . $this->name . " has a higher pixel diff than the allowed maximum." . PHP_EOL .
+                    "See: " . $this->diffOutputPath . $this->getDiffFilename()
+                );
+            } catch (ExpectationFailedException $e) {
+                echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
 
-            throw $e;
+                throw $e;
+            }
         }
     }
 
