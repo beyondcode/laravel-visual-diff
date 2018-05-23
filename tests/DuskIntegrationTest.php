@@ -2,8 +2,11 @@
 
 namespace BeyondCode\VisualDiff\Tests;
 
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\Browser;
 use Orchestra\Testbench\Dusk\TestCase;
+use Facebook\WebDriver\Chrome\ChromeOptions;
 use PHPUnit\Framework\ExpectationFailedException;
 use BeyondCode\VisualDiff\VisualDiffServiceProvider;
 
@@ -12,6 +15,21 @@ class DuskIntegrationTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [VisualDiffServiceProvider::class];
+    }
+
+    protected function driver()
+    {
+        $options = (new ChromeOptions())->addArguments([
+            '--disable-gpu',
+            '--headless',
+            '--window-size=1920, 1080',
+        ]);
+
+        return RemoteWebDriver::create(
+            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY, $options
+            )
+        );
     }
 
     protected function tearDown()
