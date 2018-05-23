@@ -71,7 +71,7 @@ class VisualDiffServiceProvider extends ServiceProvider
                     $testResolutions = $resolutions;
                 }
 
-                $tester = new DuskVisuakDiffTester('', $name, $testResolutions);
+                $tester = new DuskVisualDiffTester('', $name, $testResolutions);
                 $tester->setBrowser($this);
 
                 $tester->setScreenshotOutputPath(config('visualdiff.screenshot_path'));

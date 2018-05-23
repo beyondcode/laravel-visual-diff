@@ -4,7 +4,7 @@ namespace BeyondCode\VisualDiff;
 
 use Laravel\Dusk\Browser;
 
-class DuskVisuakDiffTester extends VisualDiffTester
+class DuskVisualDiffTester extends VisualDiffTester
 {
     /** @var Browser */
     protected $browser;
