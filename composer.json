@@ -1,6 +1,6 @@
 {
     "name": "beyondcode/laravel-visual-diff",
-    "description": ":package_description",
+    "description": "Create visual diffs in your application tests.",
     "keywords": [
         "beyondcode",
         "visual regression",
