@@ -158,11 +158,4 @@ class VisualDiffTester
         }
     }
 
-    public function setResolutions(array $resolutions)
-    {
-        $this->resolutions = $resolutions;
-
-        return $this;
-    }
-
 }
