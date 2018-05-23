@@ -17,7 +17,7 @@ class DuskIntegrationTest extends TestCase
         return [VisualDiffServiceProvider::class];
     }
 
-    protected function driver()
+    protected function driver(): RemoteWebDriver
     {
         $options = (new ChromeOptions())->addArguments([
             '--no-sandbox',
