@@ -173,7 +173,7 @@ If you use [iTerm2](https://www.iterm2.com/) as your terminal of choice, you wil
 
 ### Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
