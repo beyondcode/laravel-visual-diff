@@ -137,5 +137,8 @@ class VisualDiff
         if ($process->isSuccessful()) {
             return rtrim($process->getOutput());
         }
+
+        $message = 'Could not run the Node process. Probably a missing NPM dependency.' . PHP_EOL . PHP_EOL;
+        throw new \RuntimeException($message . $process->getErrorOutput(), 1);
     }
 }
