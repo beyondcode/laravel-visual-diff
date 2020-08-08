@@ -162,7 +162,7 @@ class VisualDiffTester
                     $this->renameScreenshots();
                     return;
                 } else {
-                    echo exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
+                    echo "\n\n" . shell_exec(__DIR__ . '/../bin/imgcat ' . escapeshellarg($this->diffOutputPath . DIRECTORY_SEPARATOR . $this->getDiffFilename()));
 
                     throw $e;
                 }
