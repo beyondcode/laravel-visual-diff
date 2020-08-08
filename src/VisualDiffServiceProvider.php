@@ -4,7 +4,7 @@ namespace BeyondCode\VisualDiff;
 
 use Laravel\Dusk\Browser;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
 
 class VisualDiffServiceProvider extends ServiceProvider
 {
