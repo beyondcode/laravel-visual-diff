@@ -124,14 +124,13 @@ class VisualDiff
 
         $binPath = $this->binPath ?: __DIR__ . '/../bin/diff.js';
 
-        $fullCommand =
-            $setIncludePathCommand . ' '
-            . $setNodePathCommand . ' '
-            . $nodeBinary . ' '
-            . escapeshellarg($binPath) . ' '
-            . escapeshellarg(json_encode($command));
-
-        $process = new Process($fullCommand);
+        $process = new Process([
+            $setIncludePathCommand,
+            $setNodePathCommand,
+            $nodeBinary,
+            $binPath,
+            json_encode($command)
+        ]);
         $process->run();
 
         if ($process->isSuccessful()) {
