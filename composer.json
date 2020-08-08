@@ -25,8 +25,8 @@
     "require": {
         "php": "^7.1",
         "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^7",
-        "symfony/process": "^3.0|^4.0",
-        "spatie/browsershot": "^3.22"
+        "symfony/process": "^3.0|^4.0|^5.1",
+        "spatie/browsershot": "^3.37"
     },
     "require-dev": {
         "orchestra/testbench-dusk": "3.6.x@dev",
