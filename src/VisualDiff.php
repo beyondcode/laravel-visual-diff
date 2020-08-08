@@ -125,8 +125,6 @@ class VisualDiff
         $binPath = $this->binPath ?: __DIR__ . '/../bin/diff.js';
 
         $process = new Process([
-            $setIncludePathCommand,
-            $setNodePathCommand,
             $nodeBinary,
             $binPath,
             json_encode($command)
